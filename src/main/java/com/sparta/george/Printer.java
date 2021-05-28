@@ -5,6 +5,9 @@ public class Printer {
     public static final String ANSI_GREEN = "\u001B[32m";
 
     public static void printArray(int[] arrayToPrint, boolean sorted) {
+        if (arrayToPrint.length == 0){
+            return;
+        }
         if (sorted){
             System.out.println(ANSI_GREEN + "Sorted Array: ");
         }else{

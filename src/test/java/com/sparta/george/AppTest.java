@@ -44,12 +44,12 @@ public class AppTest {
 
     @Test
     @DisplayName("The test checks if non-numeric character is inputted to getNumbers method")
-    public void shouldReturnZeroArray() {
+    public void shouldReturnEmptyArray() {
         String simulatedUserInput = "t";
         ByteArrayInputStream in = new ByteArrayInputStream(simulatedUserInput.getBytes());
         System.setIn(in);
 
-        Assertions.assertArrayEquals(new int[]{0},GetNumbers.getNumbers());
+        Assertions.assertArrayEquals(new int[]{},GetNumbers.getNumbers());
 //        Assertions.assertThrows(InputMismatchException.class, GetNumbers::getNumbers);
 
     }
@@ -94,5 +94,64 @@ public class AppTest {
         Assertions.assertEquals(3, bt.getNumberOfElements());
         Assertions.assertEquals(4, bt.getLeftChild(5));
     }
+
+    @Test
+    @DisplayName("This tests finding a value that exists")
+    public void shouldFindValueAndReturnTrue() {
+        BinaryTreeImplementation bt = new BinaryTreeImplementation(5);
+        bt.addElements(new int[]{2, 8, 3});
+        assertTrue(bt.findElement(8));
+    }
+
+    @Test
+    @DisplayName("This tests finding a value that doesn't exist")
+    public void shouldNotFindValueAndReturnFalse() {
+        BinaryTreeImplementation bt = new BinaryTreeImplementation(5);
+        bt.addElement(4);
+        bt.addElement(10);
+        Assertions.assertFalse(bt.findElement(12));
+    }
+
+    @Test
+    @DisplayName("This test get left child of root")
+    public void shouldFindLeftChild() throws ChildNotFoundException {
+        BinaryTreeImplementation bt = new BinaryTreeImplementation(5);
+        bt.addElements(new int[]{2, 8, 3});
+        Assertions.assertEquals(2, bt.getLeftChild(5));
+    }
+
+    @Test
+    @DisplayName("This test get left child of of child element")
+    public void shouldFindLeftChildOfChild() throws ChildNotFoundException {
+        BinaryTreeImplementation bt = new BinaryTreeImplementation(5);
+        bt.addElements(new int[]{2, 1, 8, 3});
+        Assertions.assertEquals(1, bt.getLeftChild(2));
+    }
+
+    @Test
+    @DisplayName("This test get right child of of child element")
+    public void shouldFindRightChildOfChild() throws ChildNotFoundException {
+        BinaryTreeImplementation bt = new BinaryTreeImplementation(5);
+        bt.addElements(new int[]{15, 4, 17, 30, 23, 35, 32, 50});
+        Assertions.assertEquals(35, bt.getRightChild(30));
+    }
+
+    @Test
+    @DisplayName("This test checks the sorted tree array")
+    public void shouldHaveSortedTreeAsc() {
+        BinaryTreeImplementation bt = new BinaryTreeImplementation(20);
+        bt.addElements(new int[]{15, 4, 17, 30, 23, 35, 32, 50});
+        Assertions.assertArrayEquals(new int[]{4, 15, 17, 20, 23, 30, 32, 35, 50}, bt.getSortedTreeAsc());
+    }
+
+    @Test
+    @DisplayName("This test checks the sorted tree array")
+    public void shouldHaveSortedTreeDesc() {
+        BinaryTreeImplementation bt = new BinaryTreeImplementation(20);
+        bt.addElements(new int[]{15, 4, 17, 30, 23, 35, 32, 50});
+        Assertions.assertArrayEquals(new int[]{50, 35, 32, 30, 23, 20, 17, 15, 4}, bt.getSortedTreeDesc());
+    }
+
+
 
 }

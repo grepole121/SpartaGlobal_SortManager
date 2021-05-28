@@ -18,7 +18,7 @@ public class GetNumbers {
             }
             return numbers;
         }catch(InputMismatchException e){
-            System.out.println("You must only input numbers!");
+            System.out.println("You must only input numbers!\n\n");
         }
         return new int[]{};
     }

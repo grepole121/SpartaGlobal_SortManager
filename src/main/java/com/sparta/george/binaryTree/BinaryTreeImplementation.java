@@ -1,9 +1,26 @@
 package com.sparta.george.binaryTree;
 
 public class BinaryTreeImplementation implements BinaryTree{
-
-    Node root;
+    /*
+    Example binary tree
+         20
+        / \
+       /   \
+      15    \
+     / \     30
+    4  17    / \
+            23  \
+                 35
+                 / \
+                32  50
+     */
+    private Node root;
     private int numberOfElements;
+    private boolean found = false;
+
+    public BinaryTreeImplementation() {
+        root = new Node(100);
+    }
 
     public BinaryTreeImplementation(int value) {
         root = new Node(value);
@@ -23,7 +40,48 @@ public class BinaryTreeImplementation implements BinaryTree{
     }
 
     private Node addNodeElement(Node currentNode, int value){
-        return new Node(4);
+//        Recursive method to add nodes called by addElement
+        if (currentNode == null){
+            numberOfElements++;
+            return new Node(value);
+        }
+
+        if (value < currentNode.value){
+            currentNode.left = addNodeElement(currentNode.left, value);
+        } else if (value > currentNode.value){
+            currentNode.right = addNodeElement(currentNode.right, value);
+        }
+
+        return currentNode;
+    }
+
+    private void searchForNodeValues(Node currentNode, int value){
+        if (currentNode != null){
+            if (currentNode.value == value){
+                found = true;
+                return;
+            }
+            searchForNodeValues(currentNode.left, value);
+            searchForNodeValues(currentNode.right, value);
+        }
+    }
+
+    private int getChildren(Node currentNode, int value, boolean getLeft) throws ChildNotFoundException {
+        try {
+            if (currentNode.value == value) {
+                if (getLeft) {
+                    return currentNode.left.value;
+                } else {
+                    return currentNode.right.value;
+                }
+            } else if (currentNode.value > value) {
+                return getChildren(currentNode.left, value, getLeft);
+            } else {
+                return getChildren(currentNode.right, value, getLeft);
+            }
+        }catch (NullPointerException e){
+            throw new ChildNotFoundException("There is no child");
+        }
     }
 
     @Override
@@ -38,40 +96,47 @@ public class BinaryTreeImplementation implements BinaryTree{
 
     @Override
     public void addElement(int element) {
-        if (element < root.value){
-            root.left = new Node(element);
-            numberOfElements++;
-        }else if (element > root.value){
-            root.right = new Node (element);
-            numberOfElements++;
-        }
+        addNodeElement(root, element);
     }
 
     @Override
     public void addElements(int[] elements) {
         int length = elements.length;
-        for (int i = 0; i < length; i++) {
-            numberOfElements++;
+        for (int element: elements) {
+            addElement(element);
         }
     }
 
     @Override
     public boolean findElement(int value) {
-        return false;
+        searchForNodeValues(root, value);
+        boolean elementExists = found;
+        found = false;
+        return elementExists;
     }
 
     @Override
     public int getLeftChild(int element) throws ChildNotFoundException {
-        if (root.value == element){
-            return root.left.value;
+        int childValue = 0;
+        if (findElement(element)){
+            childValue = getChildren(root, element, true);
+        }else{
+            System.out.println("Node with value " + element + " doesn't exist");
         }
-        return 0;
+        return childValue;
     }
 
     @Override
     public int getRightChild(int element) throws ChildNotFoundException {
-        return 0;
+        int childValue = 0;
+        if (findElement(element)){
+            childValue = getChildren(root, element, false);
+        }else{
+            System.out.println("Node with value " + element + " doesn't exist");
+        }
+        return childValue;
     }
+    //    =====================================================================
 
     @Override
     public int[] getSortedTreeAsc() {
