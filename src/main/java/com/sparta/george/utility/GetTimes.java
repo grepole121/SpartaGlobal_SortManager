@@ -16,10 +16,10 @@ public class GetTimes {
 
     public static double getTreeSortTime(int[] arrayToSort) {
         BinaryTreeImplementation bti = new BinaryTreeImplementation();
+        bti.addElements(arrayToSort);
 
         long startTime = System.nanoTime();
 
-        bti.addElements(arrayToSort);
         int[] sortedTree = bti.getSortedTreeAsc();
 
         long endTime = System.nanoTime();

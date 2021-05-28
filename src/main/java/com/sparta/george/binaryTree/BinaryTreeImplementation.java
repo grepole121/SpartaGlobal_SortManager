@@ -33,9 +33,10 @@ public class BinaryTreeImplementation implements BinaryTree, Sorter {
 
     @Override
     public int[] sortArray(int[] arrayToSort) {
+        addElements(arrayToSort);
+
         long startTime = System.nanoTime();
 
-        addElements(arrayToSort);
         int[] sortedTree = getSortedTreeAsc();
 
         long endTime = System.nanoTime();

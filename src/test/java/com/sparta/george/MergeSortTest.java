@@ -1,4 +1,4 @@
-package com.sparta.george.sorterTests;
+package com.sparta.george;
 
 import com.sparta.george.sorters.MergeSort;
 import org.junit.jupiter.api.Assertions;

@@ -1,4 +1,4 @@
-package com.sparta.george.binaryTreeTests;
+package com.sparta.george;
 
 import com.sparta.george.binaryTree.BinaryTreeImplementation;
 import com.sparta.george.binaryTree.ChildNotFoundException;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class binaryTreeTest {
+public class BinaryTreeTester {
     @Test
     @DisplayName("This tests getRootElement")
     public void shouldGetRootElement() {
@@ -44,6 +44,14 @@ public class binaryTreeTest {
         BinaryTreeImplementation bt = new BinaryTreeImplementation(5);
         bt.addElements(new int[]{2, 8, 3});
         Assertions.assertEquals(4, bt.getNumberOfElements());
+    }
+
+    @Test
+    @DisplayName("This tests getting number of elements for multiple elements with duplicates")
+    public void shouldReturnThree() {
+        BinaryTreeImplementation bt = new BinaryTreeImplementation(5);
+        bt.addElements(new int[]{2, 3, 3});
+        Assertions.assertEquals(3, bt.getNumberOfElements());
     }
 
     @Test

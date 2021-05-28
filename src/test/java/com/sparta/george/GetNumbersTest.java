@@ -1,4 +1,4 @@
-package com.sparta.george.utilityTests;
+package com.sparta.george;
 
 import com.sparta.george.utility.GetNumbers;
 import org.junit.jupiter.api.Assertions;

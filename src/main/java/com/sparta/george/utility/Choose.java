@@ -49,7 +49,7 @@ public class Choose {
                 case 4:
                     int[] numbers1 = numbers.clone();
                     int[] numbers2 = numbers.clone();
-                    int[] numbers3 = numbers.clone();
+//                    int[] numbers3 = numbers.clone();
 
                     Starter.sort(numbers, Starter.SortTypes.BUBBLE);
                     System.out.println("\n");
@@ -60,11 +60,11 @@ public class Choose {
                     Starter.sort(numbers2, Starter.SortTypes.TREE);
                     System.out.println("\n");
 
-                    double[] times = GetTimes.getAllTimes(numbers3);
-
-                    System.out.println("Bubble Sort | Merge Sort | Binary Tree Sort");
-//                    Giving wrong time for binary Tree sorter
-                    System.out.println(times[0] + "ms    |  " + times[1] + "ms  |     " + times[2] + "ms    ");
+//                    double[] times = GetTimes.getAllTimes(numbers3);
+//
+//                    System.out.println("Bubble Sort | Merge Sort | Binary Tree Sort");
+////                    Giving wrong time for binary Tree sorter
+//                    System.out.println(times[0] + "ms    |  " + times[1] + "ms  |     " + times[2] + "ms    ");
 
                     break;
                 default:

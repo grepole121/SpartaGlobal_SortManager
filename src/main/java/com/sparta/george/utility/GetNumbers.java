@@ -2,6 +2,7 @@ package com.sparta.george.utility;
 
 import com.sparta.george.sorters.SorterNotFoundException;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -20,6 +21,7 @@ public class GetNumbers {
             }
             return numbers;
         } catch (InputMismatchException e) {
+//            logger.error(message)
             System.out.println("You must only input numbers!\n\n");
         }
         return new int[]{};
@@ -27,14 +29,17 @@ public class GetNumbers {
 
     //    Overloading constructors if no lowerbound inputted take it as 0
     public static int[] getRandomNumbers(int length, int upperBound) {
-        return getRandomNumbers(length, 0, upperBound);
+        return getRandomNumbers(length, 0, upperBound, true);
     }
 
-    public static int[] getRandomNumbers(int length, int lowerBound, int upperBound) {
+    public static int[] getRandomNumbers(int length, int lowerBound, int upperBound, boolean unique) {
         int[] randomNumbers = new int[length];
         for (int i = 0; i < length; i++) {
             int randomNumber = (int) Math.floor(Math.random() * (upperBound - lowerBound + 1) + lowerBound);
             randomNumbers[i] = randomNumber;
+        }
+        if (unique){
+            return Arrays.stream(randomNumbers).distinct().toArray();
         }
         return randomNumbers;
     }
@@ -51,7 +56,7 @@ public class GetNumbers {
             int lowerBound = sc.nextInt();
             System.out.println("Maximum number you would like to generate");
             upperBound = sc.nextInt();
-            return getRandomNumbers(length, lowerBound, upperBound);
+            return getRandomNumbers(length, lowerBound, upperBound, true);
         } catch (InputMismatchException e) {
             System.out.println("Only input numbers!\n");
         }

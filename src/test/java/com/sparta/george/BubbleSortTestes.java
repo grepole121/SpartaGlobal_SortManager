@@ -1,11 +1,11 @@
-package com.sparta.george.sorterTests;
+package com.sparta.george;
 
 import com.sparta.george.sorters.BubbleSort;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class BubbleSortTest {
+public class BubbleSortTestes {
     @Test
     @DisplayName("The test compares sorted array with bubblesort result array")
     public void testBubbleSortingNumbers() {
