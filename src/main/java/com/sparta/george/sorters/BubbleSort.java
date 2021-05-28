@@ -18,9 +18,11 @@ public class BubbleSort implements Sorter {
         }
         long endTime = System.nanoTime();
         long timeTaken = endTime - startTime;
-        System.out.println(Printer.ANSI_GREEN +
-                "Using Bubble Sort  ---  Time taken to sort: "  +
-                timeTaken + "ns = " + (double)timeTaken / 1000000 + "ms");
+        if (arrayToSort.length != 0) {
+            System.out.println(Printer.ANSI_GREEN +
+                    "Using Bubble Sort  ---  Time taken to sort: " +
+                    timeTaken + "ns = " + (double) timeTaken / 1000000 + "ms");
+        }
         return arrayToSort;
     }
 }
