@@ -1,66 +1,14 @@
-package com.sparta.george;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
+package com.sparta.george.binaryTreeTests;
 
 import com.sparta.george.binaryTree.BinaryTreeImplementation;
 import com.sparta.george.binaryTree.ChildNotFoundException;
-import com.sparta.george.sorters.BubbleSort;
-import com.sparta.george.sorters.MergeSort;
-import com.sparta.george.utility.GetNumbers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class AppTest {
-    @Test
-    @DisplayName("The test compares sorted array with bubblesort result array")
-    public void testBubbleSortingNumbers() {
-        BubbleSort bs = new BubbleSort();
-        int[] numbers = {2, 78, 3, 6, 21, 8, 452, 12, 3};
-        int[] sortedNumbers = {2, 3, 3, 6, 8, 12, 21, 78, 452};
-        Assertions.assertArrayEquals(sortedNumbers, bs.sortArray(numbers));
-    }
-
-    @Test
-    @DisplayName("The test compares sorted array with mergesort result array")
-    public void testMergeSortingNumbers() {
-        MergeSort ms = new MergeSort();
-        int[] numbers = {2, 78, 3, 6, 21, 8, 452, 12, 3};
-        int[] sortedNumbers = {2, 3, 3, 6, 8, 12, 21, 78, 452};
-        Assertions.assertArrayEquals(sortedNumbers, ms.sortArray(numbers));
-    }
-
-    @Test
-    @DisplayName("The test checks if non-numeric character is inputted to getNumbers method")
-    public void shouldReturnEmptyArray() {
-        String simulatedUserInput = "t";
-        ByteArrayInputStream in = new ByteArrayInputStream(simulatedUserInput.getBytes());
-        System.setIn(in);
-
-        Assertions.assertArrayEquals(new int[]{}, GetNumbers.getNumbers());
-//        Assertions.assertThrows(InputMismatchException.class, GetNumbers::getNumbers);
-
-    }
-
-
-    @Test
-    @DisplayName("The test checks if numeric characters are inputted to getNumbers method")
-    public void shouldReturnArrayOfInts() {
-        String simulatedUserInput = "4" + System.getProperty("line.separator")
-                + "8" + System.getProperty("line.separator")
-                + "2" + System.getProperty("line.separator")
-                + "13" + System.getProperty("line.separator")
-                + "5" + System.getProperty("line.separator");
-
-        ByteArrayInputStream in = new ByteArrayInputStream(simulatedUserInput.getBytes());
-        System.setIn(in);
-
-        Assertions.assertArrayEquals(new int[]{8, 2, 13, 5},GetNumbers.getNumbers());
-    }
-
-
+public class binaryTreeTest {
     @Test
     @DisplayName("This tests getRootElement")
     public void shouldGetRootElement() {
@@ -69,10 +17,33 @@ public class AppTest {
     }
 
     @Test
+    @DisplayName("This tests getRootElement with no root")
+    public void shouldGetRootElementZero() {
+        BinaryTreeImplementation bt = new BinaryTreeImplementation();
+        Assertions.assertEquals(0, bt.getRootElement());
+    }
+
+    @Test
+    @DisplayName("This tests initialising with no root then adding one")
+    public void shouldGetNewRootElementFive() {
+        BinaryTreeImplementation bt = new BinaryTreeImplementation();
+        bt.addElement(5);
+        Assertions.assertEquals(5, bt.getRootElement());
+    }
+
+    @Test
     @DisplayName("This tests getting number of elements for single element")
     public void shouldReturnOne() {
         BinaryTreeImplementation bt = new BinaryTreeImplementation(5);
         Assertions.assertEquals(1, bt.getNumberOfElements());
+    }
+
+    @Test
+    @DisplayName("This tests getting number of elements for multiple elements")
+    public void shouldReturnFour() {
+        BinaryTreeImplementation bt = new BinaryTreeImplementation(5);
+        bt.addElements(new int[]{2, 8, 3});
+        Assertions.assertEquals(4, bt.getNumberOfElements());
     }
 
     @Test
@@ -142,6 +113,11 @@ public class AppTest {
         Assertions.assertArrayEquals(new int[]{50, 35, 32, 30, 23, 20, 17, 15, 4}, bt.getSortedTreeDesc());
     }
 
-
-
+    @Test
+    @DisplayName("This test checks the sorted tree array when no root is declared initially")
+    public void shouldHaveSortedTreeAscNoRootConstructor() {
+        BinaryTreeImplementation bt = new BinaryTreeImplementation();
+        bt.addElements(new int[]{15, 4, 17, 30, 23, 35, 32, 50, 20});
+        Assertions.assertArrayEquals(new int[]{4, 15, 17, 20, 23, 30, 32, 35, 50}, bt.getSortedTreeAsc());
+    }
 }

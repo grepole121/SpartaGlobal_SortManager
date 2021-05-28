@@ -12,12 +12,9 @@ public class MergeSort implements Sorter {
         ms.mergeSort(arrayToSort, 0, arrayToSort.length - 1);
 
         long endTime = System.nanoTime();
-        long timeTaken = endTime - startTime;
-
+        double timeTaken = endTime - startTime;
         if (arrayToSort.length != 0) {
-            System.out.println(Printer.ANSI_GREEN +
-                    "Using Merge Sort  ---  Time taken to sort: " +
-                    timeTaken + "ns = " + (double) timeTaken / 1000000 + "ms");
+            Printer.printTimeTaken(timeTaken, "Merge");
         }
         return arrayToSort;
     }

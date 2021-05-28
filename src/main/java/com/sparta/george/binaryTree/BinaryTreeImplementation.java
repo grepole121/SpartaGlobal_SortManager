@@ -1,9 +1,8 @@
 package com.sparta.george.binaryTree;
 
-import com.sparta.george.sorters.BubbleSort;
+import com.sparta.george.utility.Printer;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class BinaryTreeImplementation implements BinaryTree{
@@ -24,7 +23,7 @@ public class BinaryTreeImplementation implements BinaryTree{
     private boolean found = false;
 
     public BinaryTreeImplementation() {
-        root = new Node(100);
+        Node root;
     }
 
     public BinaryTreeImplementation(int value) {
@@ -89,6 +88,9 @@ public class BinaryTreeImplementation implements BinaryTree{
 
     @Override
     public int getRootElement() {
+        if (root == null){
+            return 0;
+        }
         return root.value;
     }
 
@@ -99,12 +101,15 @@ public class BinaryTreeImplementation implements BinaryTree{
 
     @Override
     public void addElement(int element) {
-        addNodeElement(root, element);
+        if (root == null){
+            root = new Node(element);
+        }else {
+            addNodeElement(root, element);
+        }
     }
 
     @Override
     public void addElements(int[] elements) {
-        int length = elements.length;
         for (int element: elements) {
             addElement(element);
         }
@@ -141,13 +146,13 @@ public class BinaryTreeImplementation implements BinaryTree{
     }
     //    =====================================================================
 
-    private List<Integer> getEveryElement(Node currentNode, List<Integer> nodeValues){
-        nodeValues.add(currentNode.value);
+    private List<Integer> getSortedTree(Node currentNode, List<Integer> nodeValues){
         if (currentNode.left != null){
-            getEveryElement(currentNode.left, nodeValues);
+            getSortedTree(currentNode.left, nodeValues);
         }
+        nodeValues.add(currentNode.value);
         if (currentNode.right != null){
-            getEveryElement(currentNode.right, nodeValues);
+            getSortedTree(currentNode.right, nodeValues);
         }
         return nodeValues;
     }
@@ -155,9 +160,7 @@ public class BinaryTreeImplementation implements BinaryTree{
     @Override
     public int[] getSortedTreeAsc() {
         List<Integer> nodeValues = new ArrayList<>();
-        int[] unsortedTree = getEveryElement(root, nodeValues).stream().mapToInt(Integer::intValue).toArray();
-        int[] sortedTree = unsortedTree;
-        Arrays.sort(sortedTree);
+        int[] sortedTree = getSortedTree(root, nodeValues).stream().mapToInt(Integer::intValue).toArray();
         return sortedTree;
     }
 

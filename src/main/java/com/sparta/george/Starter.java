@@ -6,6 +6,10 @@ import com.sparta.george.sorters.*;
 import com.sparta.george.utility.GetNumbers;
 import com.sparta.george.utility.Printer;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -17,7 +21,7 @@ public class Starter {
     public static void start() throws ChildNotFoundException, SorterNotFoundException {
 
 //        int[] numbers = {2, 78, 3, 6, 21, 8, 452, 12, 3};
-        int[] numbers = GetNumbers.getRandomNumbers(500, -5, 20);
+        int[] numbers = GetNumbers.getRandomNumbers(1000, 0, 100);
 //        int[] numbers = Starter.getNumbers();
 //        Starter.chooseSorter(numbers);
         Starter.binaryTree();
@@ -37,15 +41,11 @@ public class Starter {
                          / \
                         32  50
          */
-
-        BinaryTreeImplementation bt = new BinaryTreeImplementation(20);
-        bt.addElements(new int[]{15, 4, 17, 30, 23, 35, 32, 50});
+        System.out.print(Printer.ANSI_RESET);
+        BinaryTreeImplementation bt = new BinaryTreeImplementation();
+        bt.addElements(new int[]{15, 4});
+        Printer.printArray(bt.getSortedTreeAsc());
         System.out.println(bt.getNumberOfElements());
-        System.out.println("Expect 15 --- Actual:" + bt.getLeftChild(20)); //
-        System.out.println("Expect 23 --- Actual:" + bt.getLeftChild(30)); //Expect 23
-        System.out.println("Expect 4 --- Actual:" + bt.getLeftChild(15)); //Expect 4
-        System.out.println("Expect 35 --- Actual:" + bt.getRightChild(30)); // Expect 35
-        System.out.println("Expect 50 --- Actual:" + bt.getRightChild(bt.getRightChild(30))); //Expect 50 (right child of 35)
     }
 
     public static void sort(int[] numbers, SortTypes sorterType) {
@@ -64,7 +64,7 @@ public class Starter {
     }
 
     public static SortTypes chooseSorter(int[] numbers) throws SorterNotFoundException {
-        System.out.println("Enter 1 for BubbleSort, 2 for MergeSort, 3 for both");
+        System.out.print("Enter 1 for BubbleSort, 2 for MergeSort, 3 for both: ");
         Scanner sc = new Scanner(System.in);
         try {
             switch (sc.nextInt()) {
