@@ -1,7 +1,5 @@
 package com.sparta.george.binaryTree;
 
-import com.sparta.george.Printer;
-import com.sparta.george.Starter;
 import com.sparta.george.sorters.BubbleSort;
 
 import java.util.ArrayList;
@@ -161,9 +159,7 @@ public class BinaryTreeImplementation implements BinaryTree{
         BubbleSort bs = new BubbleSort();
         List<Integer> nodeValues = new ArrayList<>();
         int[] unsortedTree = getEveryElement(root, nodeValues).stream().mapToInt(Integer::intValue).toArray();
-        int[] sortedTree = bs.sortArray(unsortedTree);
-        return sortedTree;
-
+        return bs.sortArray(unsortedTree);
     }
 
     @Override

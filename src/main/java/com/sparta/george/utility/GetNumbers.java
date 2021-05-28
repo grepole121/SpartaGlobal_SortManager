@@ -1,4 +1,4 @@
-package com.sparta.george;
+package com.sparta.george.utility;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -17,9 +17,23 @@ public class GetNumbers {
                 numbers[i] = sc.nextInt();
             }
             return numbers;
-        }catch(InputMismatchException e){
+        } catch (InputMismatchException e) {
             System.out.println("You must only input numbers!\n\n");
         }
         return new int[]{};
+    }
+
+    //    Overloading constructors if no lowerbound inputted take it as 0
+    public static int[] getRandomNumbers(int length, int upperBound) {
+        return getRandomNumbers(length, 0, upperBound);
+    }
+
+    public static int[] getRandomNumbers(int length, int lowerBound, int upperBound) {
+        int[] randomNumbers = new int[length];
+        for (int i = 0; i < length; i++) {
+            int randomNumber = (int) Math.floor(Math.random() * (upperBound - lowerBound + 1) + lowerBound);
+            randomNumbers[i] = randomNumber;
+        }
+        return randomNumbers;
     }
 }

@@ -4,10 +4,12 @@ import com.sparta.george.binaryTree.BinaryTreeImplementation;
 import com.sparta.george.binaryTree.ChildNotFoundException;
 import com.sparta.george.sorters.BubbleSort;
 import com.sparta.george.sorters.MergeSort;
+import com.sparta.george.utility.GetNumbers;
+import com.sparta.george.utility.Printer;
 
 public class Starter {
     public static void start() throws ChildNotFoundException {
-//        int[] numbers = {2, 78, 3, 6, 21, 8, 452, 12, 3};
+        int[] numbers = {2, 78, 3, 6, 21, 8, 452, 12, 3};
 
 //        int[] numbers = GetNumbers.getNumbers();
 //        if (numbers.length == 0){
@@ -16,7 +18,9 @@ public class Starter {
 
 //        Starter.bubbleSort(numbers);
 //        Starter.mergeSort(numbers);
-        Starter.binaryTree();
+//        Starter.binaryTree();
+        Starter.bubbleSort(GetNumbers.getRandomNumbers(500, -5, 20));
+        Starter.mergeSort(GetNumbers.getRandomNumbers(500, -5, 20));
     }
 
     private static void binaryTree() throws ChildNotFoundException {

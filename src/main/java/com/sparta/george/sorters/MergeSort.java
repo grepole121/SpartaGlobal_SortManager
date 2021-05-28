@@ -1,11 +1,21 @@
 package com.sparta.george.sorters;
 
+import com.sparta.george.utility.Printer;
+
 public class MergeSort implements Sorter {
 
     @Override
     public int[] sortArray(int[] arrayToSort) {
         MergeSort ms = new MergeSort();
+        long startTime = System.nanoTime();
+
         ms.mergeSort(arrayToSort, 0, arrayToSort.length - 1);
+
+        long endTime = System.nanoTime();
+        long timeTaken = endTime - startTime;
+        System.out.println(Printer.ANSI_GREEN +
+                "Using Merge Sort  ---  Time taken to sort: "  +
+                timeTaken + "ns = " + (double)timeTaken / 1000000 + "ms");
 
         return arrayToSort;
     }

@@ -6,6 +6,7 @@ import com.sparta.george.binaryTree.BinaryTreeImplementation;
 import com.sparta.george.binaryTree.ChildNotFoundException;
 import com.sparta.george.sorters.BubbleSort;
 import com.sparta.george.sorters.MergeSort;
+import com.sparta.george.utility.GetNumbers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,7 +50,7 @@ public class AppTest {
         ByteArrayInputStream in = new ByteArrayInputStream(simulatedUserInput.getBytes());
         System.setIn(in);
 
-        Assertions.assertArrayEquals(new int[]{},GetNumbers.getNumbers());
+        Assertions.assertArrayEquals(new int[]{}, GetNumbers.getNumbers());
 //        Assertions.assertThrows(InputMismatchException.class, GetNumbers::getNumbers);
 
     }
