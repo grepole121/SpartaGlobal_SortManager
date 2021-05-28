@@ -4,19 +4,22 @@ import com.sparta.george.binaryTree.BinaryTreeImplementation;
 import com.sparta.george.binaryTree.ChildNotFoundException;
 import com.sparta.george.sorters.BubbleSort;
 import com.sparta.george.sorters.MergeSort;
+import com.sparta.george.sorters.Sorter;
+import com.sparta.george.sorters.SorterFactory;
 import com.sparta.george.utility.GetNumbers;
 import com.sparta.george.utility.Printer;
 
+
+
 public class Starter {
+    public enum SortTypes{
+        BUBBLE, MERGE
+    }
     public static void start() throws ChildNotFoundException {
-//        int[] numbers = {2, 78, 3, 6, 21, 8, 452, 12, 3};
+        int[] numbers = {2, 78, 3, 6, 21, 8, 452, 12, 3};
+//        int[] numbers = Starter.getNumbers();
 
-        int[] numbers = GetNumbers.getNumbers();
-        if (numbers.length == 0){
-            start();
-        }
-
-        Starter.bubbleSort(numbers);
+        Starter.sort(numbers, SortTypes.MERGE);
 //        Starter.mergeSort(numbers);
 //        Starter.binaryTree();
 //        Starter.bubbleSort(GetNumbers.getRandomNumbers(500, -5, 20));
@@ -48,16 +51,18 @@ public class Starter {
         System.out.println("Expect 50 --- Actual:" + bt.getRightChild(bt.getRightChild(30))); //Expect 50 (right child of 35)
     }
 
-    public static void bubbleSort(int[] numbers) {
-        BubbleSort bubbleSort = new BubbleSort();
+    public static void sort(int[] numbers, SortTypes sorterType) {
+        SorterFactory sorterFactory = new SorterFactory();
+        Sorter sorter = sorterFactory.getSorter(sorterType);
         Printer.printArray(numbers, false);
-        Printer.printArray(bubbleSort.sortArray(numbers), true);
+        Printer.printArray(sorter.sortArray(numbers), true);
     }
 
-    public static void mergeSort(int[] numbers) {
-        MergeSort mergeSort = new MergeSort();
-        Printer.printArray(numbers, false);
-        Printer.printArray(mergeSort.sortArray(numbers), true);
+    public static int[] getNumbers() {
+        int[] numbers = GetNumbers.getNumbers();
+        if (numbers.length == 0){
+            numbers = getNumbers();
+        }
+        return numbers;
     }
-
 }
