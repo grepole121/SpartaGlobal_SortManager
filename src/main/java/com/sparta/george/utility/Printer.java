@@ -36,6 +36,18 @@ public class Printer {
         System.out.println(arrayAsString.substring(0, arrayAsString.length() - 2) + "\n");
     }
 
+    public static void printArray(double[] arrayToPrint) {
+        if (arrayToPrint.length == 0){
+            return;
+        }
+        String arrayAsString = "";
+        for (double number: arrayToPrint){
+            arrayAsString += number + ", ";
+        }
+//        Substring used to remove tailing comma
+        System.out.println(arrayAsString.substring(0, arrayAsString.length() - 2) + "\n");
+    }
+
     public static void printTimeTaken (double timeTaken, String sorter){
         System.out.println(Printer.ANSI_BLUE +
                 "Using " + sorter + " Sort  ---  Time taken to sort: " +

@@ -1,11 +1,12 @@
 package com.sparta.george.binaryTree;
 
+import com.sparta.george.sorters.Sorter;
 import com.sparta.george.utility.Printer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BinaryTreeImplementation implements BinaryTree{
+public class BinaryTreeImplementation implements BinaryTree, Sorter {
     /*
     Example binary tree
          20
@@ -28,6 +29,21 @@ public class BinaryTreeImplementation implements BinaryTree{
 
     public BinaryTreeImplementation(int value) {
         root = new Node(value);
+    }
+
+    @Override
+    public int[] sortArray(int[] arrayToSort) {
+        long startTime = System.nanoTime();
+
+        addElements(arrayToSort);
+        int[] sortedTree = getSortedTreeAsc();
+
+        long endTime = System.nanoTime();
+        double timeTaken = endTime - startTime;
+        if (arrayToSort.length != 0) {
+            Printer.printTimeTaken(timeTaken, "Binary Tree");
+        }
+        return sortedTree;
     }
 
     public class Node {

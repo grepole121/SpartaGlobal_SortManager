@@ -3,7 +3,9 @@ package com.sparta.george;
 import com.sparta.george.binaryTree.BinaryTreeImplementation;
 import com.sparta.george.binaryTree.ChildNotFoundException;
 import com.sparta.george.sorters.*;
+import com.sparta.george.utility.Choose;
 import com.sparta.george.utility.GetNumbers;
+import com.sparta.george.utility.GetTimes;
 import com.sparta.george.utility.Printer;
 
 import javax.swing.*;
@@ -15,17 +17,40 @@ import java.util.Scanner;
 
 
 public class Starter {
-    public enum SortTypes{
-        BUBBLE, MERGE
+    public enum SortTypes {
+        BUBBLE, MERGE, TREE
     }
+
     public static void start() throws ChildNotFoundException, SorterNotFoundException {
 
 //        int[] numbers = {2, 78, 3, 6, 21, 8, 452, 12, 3};
-        int[] numbers = GetNumbers.getRandomNumbers(1000, 0, 100);
+//        int[] numbers = GetNumbers.getRandomNumbers(100, 0, 100);
+//        double[] times = GetTimes.getAllTimes(numbers);
+//        Printer.printArray(times);
 //        int[] numbers = Starter.getNumbers();
+        Choose.chooseInput();
 //        Starter.chooseSorter(numbers);
-        Starter.binaryTree();
     }
+
+
+    public static void sort(int[] numbers, SortTypes sorterType) {
+        SorterFactory sorterFactory = new SorterFactory();
+        Sorter sorter = sorterFactory.getSorter(sorterType);
+        Printer.printArray(numbers, false);
+        Printer.printArray(sorter.sortArray(numbers), true);
+    }
+
+
+    public static int[] getNumbers() {
+        int[] numbers = GetNumbers.getNumbers();
+        if (numbers.length == 0) {
+            numbers = getNumbers();
+        }
+        return numbers;
+    }
+
+
+
 
     private static void binaryTree() throws ChildNotFoundException {
             /*
@@ -46,46 +71,5 @@ public class Starter {
         bt.addElements(new int[]{15, 4});
         Printer.printArray(bt.getSortedTreeAsc());
         System.out.println(bt.getNumberOfElements());
-    }
-
-    public static void sort(int[] numbers, SortTypes sorterType) {
-        SorterFactory sorterFactory = new SorterFactory();
-        Sorter sorter = sorterFactory.getSorter(sorterType);
-        Printer.printArray(numbers, false);
-        Printer.printArray(sorter.sortArray(numbers), true);
-    }
-
-    public static int[] getNumbers() {
-        int[] numbers = GetNumbers.getNumbers();
-        if (numbers.length == 0){
-            numbers = getNumbers();
-        }
-        return numbers;
-    }
-
-    public static SortTypes chooseSorter(int[] numbers) throws SorterNotFoundException {
-        System.out.print("Enter 1 for BubbleSort, 2 for MergeSort, 3 for both: ");
-        Scanner sc = new Scanner(System.in);
-        try {
-            switch (sc.nextInt()) {
-                case 1:
-                    sort(numbers, SortTypes.BUBBLE);
-                    break;
-                case 2:
-                    sort(numbers, SortTypes.MERGE);
-                    break;
-                case 3:
-                    int[] numbers1 = numbers.clone();
-                    sort(numbers, SortTypes.BUBBLE);
-                    System.out.println("\n");
-                    sort(numbers1, SortTypes.MERGE);
-                    break;
-                default:
-                    throw new SorterNotFoundException("You can only enter 1 or 2");
-            }
-        }catch (InputMismatchException e){
-            System.out.println("You can only enter 1 or 2");
-        }
-        return null;
     }
 }

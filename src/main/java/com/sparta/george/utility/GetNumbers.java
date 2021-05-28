@@ -1,5 +1,7 @@
 package com.sparta.george.utility;
 
+import com.sparta.george.sorters.SorterNotFoundException;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -35,5 +37,25 @@ public class GetNumbers {
             randomNumbers[i] = randomNumber;
         }
         return randomNumbers;
+    }
+
+    public static int[] getRandomNumbers() {
+//        Ask user input for amount of numbers and range
+        int length = 100;
+        int upperBound = 100;
+        Scanner sc = new Scanner(System.in);
+        try {
+            System.out.println("How many random numbers would you like to generate");
+            length = sc.nextInt();
+            System.out.println("Minimum number you would like to generate");
+            int lowerBound = sc.nextInt();
+            System.out.println("Maximum number you would like to generate");
+            upperBound = sc.nextInt();
+            return getRandomNumbers(length, lowerBound, upperBound);
+        } catch (InputMismatchException e) {
+            System.out.println("Only input numbers!\n");
+        }
+        System.out.println("Using random array of size 100 ranging from 0 to 100.\n");
+        return getRandomNumbers(length, upperBound);
     }
 }
