@@ -2,28 +2,25 @@ package com.sparta.george;
 
 import com.sparta.george.binaryTree.BinaryTreeImplementation;
 import com.sparta.george.binaryTree.ChildNotFoundException;
-import com.sparta.george.sorters.BubbleSort;
-import com.sparta.george.sorters.MergeSort;
-import com.sparta.george.sorters.Sorter;
-import com.sparta.george.sorters.SorterFactory;
+import com.sparta.george.sorters.*;
 import com.sparta.george.utility.GetNumbers;
 import com.sparta.george.utility.Printer;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 
 public class Starter {
     public enum SortTypes{
         BUBBLE, MERGE
     }
-    public static void start() throws ChildNotFoundException {
-        int[] numbers = {2, 78, 3, 6, 21, 8, 452, 12, 3};
-//        int[] numbers = Starter.getNumbers();
+    public static void start() throws ChildNotFoundException, SorterNotFoundException {
 
-        Starter.sort(numbers, SortTypes.MERGE);
-//        Starter.mergeSort(numbers);
+//        int[] numbers = {2, 78, 3, 6, 21, 8, 452, 12, 3};
+        int[] numbers = GetNumbers.getRandomNumbers(500, -5, 20);
+//        int[] numbers = Starter.getNumbers();
+        Starter.chooseSorter(numbers);
 //        Starter.binaryTree();
-//        Starter.bubbleSort(GetNumbers.getRandomNumbers(500, -5, 20));
-//        Starter.mergeSort(GetNumbers.getRandomNumbers(500, -5, 20));
     }
 
     private static void binaryTree() throws ChildNotFoundException {
@@ -64,5 +61,31 @@ public class Starter {
             numbers = getNumbers();
         }
         return numbers;
+    }
+
+    public static SortTypes chooseSorter(int[] numbers) throws SorterNotFoundException {
+        System.out.println("Enter 1 for BubbleSort, 2 for MergeSort, 3 for both");
+        Scanner sc = new Scanner(System.in);
+        try {
+            switch (sc.nextInt()) {
+                case 1:
+                    sort(numbers, SortTypes.BUBBLE);
+                    break;
+                case 2:
+                    sort(numbers, SortTypes.MERGE);
+                    break;
+                case 3:
+                    int[] numbers1 = numbers.clone();
+                    sort(numbers, SortTypes.BUBBLE);
+                    System.out.println("\n");
+                    sort(numbers1, SortTypes.MERGE);
+                    break;
+                default:
+                    throw new SorterNotFoundException("You can only enter 1 or 2");
+            }
+        }catch (InputMismatchException e){
+            System.out.println("You can only enter 1 or 2");
+        }
+        return null;
     }
 }
