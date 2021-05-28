@@ -3,6 +3,7 @@ package com.sparta.george.binaryTree;
 import com.sparta.george.sorters.BubbleSort;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BinaryTreeImplementation implements BinaryTree{
@@ -20,7 +21,6 @@ public class BinaryTreeImplementation implements BinaryTree{
                 32  50
      */
     private Node root;
-    private int numberOfElements;
     private boolean found = false;
 
     public BinaryTreeImplementation() {
@@ -29,7 +29,6 @@ public class BinaryTreeImplementation implements BinaryTree{
 
     public BinaryTreeImplementation(int value) {
         root = new Node(value);
-        numberOfElements = 1;
     }
 
     public class Node {
@@ -47,7 +46,6 @@ public class BinaryTreeImplementation implements BinaryTree{
     private Node addNodeElement(Node currentNode, int value){
 //        Recursive method to add nodes called by addElement
         if (currentNode == null){
-            numberOfElements++;
             return new Node(value);
         }
 
@@ -96,7 +94,7 @@ public class BinaryTreeImplementation implements BinaryTree{
 
     @Override
     public int getNumberOfElements() {
-        return numberOfElements;
+        return getSortedTreeAsc().length;
     }
 
     @Override
@@ -156,10 +154,11 @@ public class BinaryTreeImplementation implements BinaryTree{
 
     @Override
     public int[] getSortedTreeAsc() {
-        BubbleSort bs = new BubbleSort();
         List<Integer> nodeValues = new ArrayList<>();
         int[] unsortedTree = getEveryElement(root, nodeValues).stream().mapToInt(Integer::intValue).toArray();
-        return bs.sortArray(unsortedTree);
+        int[] sortedTree = unsortedTree;
+        Arrays.sort(sortedTree);
+        return sortedTree;
     }
 
     @Override

@@ -13,18 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 
-/**
- * Unit test for simple App.
- */
 public class AppTest {
-    /**
-     * Rigorous Test :-)
-     */
-    @Test
-    public void shouldAnswerWithTrue() {
-        assertTrue(true);
-    }
-
     @Test
     @DisplayName("The test compares sorted array with bubblesort result array")
     public void testBubbleSortingNumbers() {

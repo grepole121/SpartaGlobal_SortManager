@@ -19,8 +19,8 @@ public class Starter {
 //        int[] numbers = {2, 78, 3, 6, 21, 8, 452, 12, 3};
         int[] numbers = GetNumbers.getRandomNumbers(500, -5, 20);
 //        int[] numbers = Starter.getNumbers();
-        Starter.chooseSorter(numbers);
-//        Starter.binaryTree();
+//        Starter.chooseSorter(numbers);
+        Starter.binaryTree();
     }
 
     private static void binaryTree() throws ChildNotFoundException {
