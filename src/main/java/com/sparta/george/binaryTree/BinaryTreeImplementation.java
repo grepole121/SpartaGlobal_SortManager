@@ -1,5 +1,12 @@
 package com.sparta.george.binaryTree;
 
+import com.sparta.george.Printer;
+import com.sparta.george.Starter;
+import com.sparta.george.sorters.BubbleSort;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class BinaryTreeImplementation implements BinaryTree{
     /*
     Example binary tree
@@ -138,13 +145,34 @@ public class BinaryTreeImplementation implements BinaryTree{
     }
     //    =====================================================================
 
+    private List<Integer> getEveryElement(Node currentNode, List<Integer> nodeValues){
+        nodeValues.add(currentNode.value);
+        if (currentNode.left != null){
+            getEveryElement(currentNode.left, nodeValues);
+        }
+        if (currentNode.right != null){
+            getEveryElement(currentNode.right, nodeValues);
+        }
+        return nodeValues;
+    }
+
     @Override
     public int[] getSortedTreeAsc() {
-        return new int[0];
+        BubbleSort bs = new BubbleSort();
+        List<Integer> nodeValues = new ArrayList<>();
+        int[] unsortedTree = getEveryElement(root, nodeValues).stream().mapToInt(Integer::intValue).toArray();
+        int[] sortedTree = bs.sortArray(unsortedTree);
+        return sortedTree;
+
     }
 
     @Override
     public int[] getSortedTreeDesc() {
-        return new int[0];
+        int[] ascTree = getSortedTreeAsc();
+        int[] descTree = new int[ascTree.length];
+        for (int i = 0; i < ascTree.length; i++) {
+            descTree[ascTree.length - i - 1] = ascTree[i];
+        }
+        return descTree;
     }
 }
