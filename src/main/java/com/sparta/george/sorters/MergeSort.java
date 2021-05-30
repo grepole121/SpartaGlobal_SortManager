@@ -1,6 +1,7 @@
 package com.sparta.george.sorters;
 
 import com.sparta.george.utility.Printer;
+import com.sparta.george.utility.SortedChecker;
 
 public class MergeSort implements Sorter {
 
@@ -9,7 +10,9 @@ public class MergeSort implements Sorter {
         MergeSort ms = new MergeSort();
         long startTime = System.nanoTime();
 
-        ms.mergeSort(arrayToSort, 0, arrayToSort.length - 1);
+        if(!SortedChecker.isSorted(arrayToSort)) {
+            ms.mergeSort(arrayToSort, 0, arrayToSort.length - 1);
+        }
 
         long endTime = System.nanoTime();
         double timeTaken = endTime - startTime;

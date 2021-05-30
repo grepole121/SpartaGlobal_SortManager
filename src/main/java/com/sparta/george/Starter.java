@@ -22,7 +22,6 @@ public class Starter {
     }
 
     // TODO: 28/05/2021
-    //  Check if array already sorted for mergesort
     //  Complete performance tester
     //  Add logger where exceptions happen
 
