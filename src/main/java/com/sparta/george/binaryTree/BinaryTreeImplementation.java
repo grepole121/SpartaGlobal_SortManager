@@ -2,11 +2,14 @@ package com.sparta.george.binaryTree;
 
 import com.sparta.george.sorters.Sorter;
 import com.sparta.george.utility.Printer;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BinaryTreeImplementation implements BinaryTree, Sorter {
+    public static final Logger logger = LogManager.getLogger(BinaryTreeImplementation.class);
     /*
     Example binary tree
          20
@@ -47,36 +50,24 @@ public class BinaryTreeImplementation implements BinaryTree, Sorter {
         return sortedTree;
     }
 
-    public class Node {
-        int value;
-        Node left;
-        Node right;
-
-        Node(int value) {
-            this.value = value;
-            right = null;
-            left = null;
-        }
-    }
-
-    private Node addNodeElement(Node currentNode, int value){
+    private Node addNodeElement(Node currentNode, int value) {
 //        Recursive method to add nodes called by addElement
-        if (currentNode == null){
+        if (currentNode == null) {
             return new Node(value);
         }
 
-        if (value < currentNode.value){
+        if (value < currentNode.value) {
             currentNode.left = addNodeElement(currentNode.left, value);
-        } else if (value > currentNode.value){
+        } else if (value > currentNode.value) {
             currentNode.right = addNodeElement(currentNode.right, value);
         }
 
         return currentNode;
     }
 
-    private void searchForNodeValues(Node currentNode, int value){
-        if (currentNode != null){
-            if (currentNode.value == value){
+    private void searchForNodeValues(Node currentNode, int value) {
+        if (currentNode != null) {
+            if (currentNode.value == value) {
                 found = true;
                 return;
             }
@@ -98,14 +89,15 @@ public class BinaryTreeImplementation implements BinaryTree, Sorter {
             } else {
                 return getChildren(currentNode.right, value, getLeft);
             }
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
+            logger.error("There is no child");
             throw new ChildNotFoundException("There is no child");
         }
     }
 
     @Override
     public int getRootElement() {
-        if (root == null){
+        if (root == null) {
             return 0;
         }
         return root.value;
@@ -118,16 +110,16 @@ public class BinaryTreeImplementation implements BinaryTree, Sorter {
 
     @Override
     public void addElement(int element) {
-        if (root == null){
+        if (root == null) {
             root = new Node(element);
-        }else {
+        } else {
             addNodeElement(root, element);
         }
     }
 
     @Override
     public void addElements(int[] elements) {
-        for (int element: elements) {
+        for (int element : elements) {
             addElement(element);
         }
     }
@@ -143,9 +135,9 @@ public class BinaryTreeImplementation implements BinaryTree, Sorter {
     @Override
     public int getLeftChild(int element) throws ChildNotFoundException {
         int childValue = 0;
-        if (findElement(element)){
+        if (findElement(element)) {
             childValue = getChildren(root, element, true);
-        }else{
+        } else {
             System.out.println("Node with value " + element + " doesn't exist");
         }
         return childValue;
@@ -154,25 +146,25 @@ public class BinaryTreeImplementation implements BinaryTree, Sorter {
     @Override
     public int getRightChild(int element) throws ChildNotFoundException {
         int childValue = 0;
-        if (findElement(element)){
+        if (findElement(element)) {
             childValue = getChildren(root, element, false);
-        }else{
+        } else {
             System.out.println("Node with value " + element + " doesn't exist");
         }
         return childValue;
     }
-    //    =====================================================================
 
-    private List<Integer> getSortedTree(Node currentNode, List<Integer> nodeValues){
-        if (currentNode.left != null){
+    private List<Integer> getSortedTree(Node currentNode, List<Integer> nodeValues) {
+        if (currentNode.left != null) {
             getSortedTree(currentNode.left, nodeValues);
         }
         nodeValues.add(currentNode.value);
-        if (currentNode.right != null){
+        if (currentNode.right != null) {
             getSortedTree(currentNode.right, nodeValues);
         }
         return nodeValues;
     }
+    //    =====================================================================
 
     @Override
     public int[] getSortedTreeAsc() {
@@ -189,5 +181,17 @@ public class BinaryTreeImplementation implements BinaryTree, Sorter {
             descTree[ascTree.length - i - 1] = ascTree[i];
         }
         return descTree;
+    }
+
+    public class Node {
+        int value;
+        Node left;
+        Node right;
+
+        Node(int value) {
+            this.value = value;
+            right = null;
+            left = null;
+        }
     }
 }

@@ -1,12 +1,15 @@
 package com.sparta.george.utility;
 
-import com.sparta.george.sorters.SorterNotFoundException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GetNumbers {
+    public static final Logger logger = LogManager.getLogger(GetNumbers.class);
+
     public static int[] getNumbers() {
         try {
             Scanner sc = new Scanner(System.in);
@@ -21,7 +24,7 @@ public class GetNumbers {
             }
             return numbers;
         } catch (InputMismatchException e) {
-//            logger.error(message)
+            logger.error("You must only input numbers!");
             System.out.println("You must only input numbers!\n\n");
         }
         return new int[]{};
@@ -38,7 +41,7 @@ public class GetNumbers {
             int randomNumber = (int) Math.floor(Math.random() * (upperBound - lowerBound + 1) + lowerBound);
             randomNumbers[i] = randomNumber;
         }
-        if (unique){
+        if (unique) {
             return Arrays.stream(randomNumbers).distinct().toArray();
         }
         return randomNumbers;
@@ -58,6 +61,7 @@ public class GetNumbers {
             upperBound = sc.nextInt();
             return getRandomNumbers(length, lowerBound, upperBound, true);
         } catch (InputMismatchException e) {
+            logger.error("You must only input numbers!");
             System.out.println("Only input numbers!\n");
         }
         System.out.println("Using random array of size 100 ranging from 0 to 100.\n");
