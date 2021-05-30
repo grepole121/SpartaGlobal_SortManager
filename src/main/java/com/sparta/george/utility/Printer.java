@@ -51,6 +51,6 @@ public class Printer {
     public static void printTimeTaken(double timeTaken, String sorter) {
         System.out.println(Printer.ANSI_BLUE +
                 "Using " + sorter + " Sort  ---  Time taken to sort: " +
-                (double) timeTaken / 1000000 + "ms" + ANSI_RESET);
+                timeTaken / 1000000 + "ms" + ANSI_RESET);
     }
 }

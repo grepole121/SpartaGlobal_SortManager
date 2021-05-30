@@ -10,7 +10,7 @@ public class MergeSort implements Sorter {
         MergeSort ms = new MergeSort();
         long startTime = System.nanoTime();
 
-        if(!SortedChecker.isSorted(arrayToSort)) {
+        if (!SortedChecker.isSorted(arrayToSort)) {
             ms.mergeSort(arrayToSort, 0, arrayToSort.length - 1);
         }
 
@@ -41,8 +41,8 @@ public class MergeSort implements Sorter {
         int leftIndex = mid - left + 1;
         int rightIndex = right - mid;
 
-        int leftArray[] = new int[leftIndex];
-        int rightArray[] = new int[rightIndex];
+        int[] leftArray = new int[leftIndex];
+        int[] rightArray = new int[rightIndex];
 
         for (int i = 0; i < leftIndex; ++i)
             leftArray[i] = arrayToMerge[left + i];

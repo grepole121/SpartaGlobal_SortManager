@@ -4,7 +4,7 @@ import com.sparta.george.binaryTree.BinaryTreeImplementation;
 import com.sparta.george.sorters.MergeSort;
 
 public class GetTimes {
-    public static double[] getAllTimes(int[] arrayToSort){
+    public static double[] getAllTimes(int[] arrayToSort) {
         double[] times = new double[3];
         int[] arrayToSort2 = arrayToSort.clone();
         int[] arrayToSort3 = arrayToSort.clone();
@@ -23,7 +23,7 @@ public class GetTimes {
         int[] sortedTree = bti.getSortedTreeAsc();
 
         long endTime = System.nanoTime();
-        return (double)(endTime - startTime) / 1000000;
+        return (double) (endTime - startTime) / 1000000;
     }
 
 
@@ -41,18 +41,17 @@ public class GetTimes {
         }
 
         long endTime = System.nanoTime();
-        return (double)(endTime - startTime) / 1000000;
+        return (double) (endTime - startTime) / 1000000;
     }
 
 
-
-    public static double getMergeSortTime(int[] arrayToSort){
+    public static double getMergeSortTime(int[] arrayToSort) {
         MergeSort ms = new MergeSort();
         long startTime = System.nanoTime();
 
         ms.mergeSort(arrayToSort, 0, arrayToSort.length - 1);
 
         long endTime = System.nanoTime();
-        return (double)(endTime - startTime) / 1000000;
+        return (double) (endTime - startTime) / 1000000;
     }
 }
