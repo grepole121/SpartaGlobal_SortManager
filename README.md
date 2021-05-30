@@ -19,6 +19,14 @@ A SorterFactory is used.
 There is a random number generator that can generate a specified amount of numbers within a range. There is the option for choosing between unique or non-unique random numbers 
 
 ### Performance testing results
+As can be seen from the performance results both Merge Sort and Binary Tree Sort have similar times for sorting numbers as they have the same time efficiency of O(n*log n). Merge sort tends to be slightly faster.
+Bubble Sort is slower with average time complexity of O(n^2).
+
+![](images/graph.png)
+![](images/performance_test_1000.png)
+![](images/performance_test_10000.png)
+![](images/performance_test_100000.png)
+![](images/performance_test_100000_again.png)
 
 
 

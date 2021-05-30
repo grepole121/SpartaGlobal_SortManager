@@ -25,9 +25,6 @@ public class Starter {
 
     }
 
-    // TODO: 28/05/2021
-    //  Complete performance tester
-
     public static void sort(int[] numbers, SortTypes sorterType) {
         SorterFactory sorterFactory = new SorterFactory();
         Sorter sorter = sorterFactory.getSorter(sorterType);
