@@ -18,7 +18,7 @@ public class PerformanceTester {
 
         System.out.println("Performance Testing with " + numbers.length + " elements");
         System.out.println("Bubble Sort | Merge Sort | Binary Tree Sort");
-        System.out.printf("%.4fms    | %.4fms   | %.4fms ", times[0], times[1], times[2]);
+        System.out.printf("%.4fms    | %.4fms   | %.4fms \n\n", times[0], times[1], times[2]);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class PerformanceTester {
 
         System.out.println("Performance Testing with " + numbers.length + " elements");
         System.out.println("Bubble Sort | Merge Sort | Binary Tree Sort");
-        System.out.printf("%.4fms    | %.4fms   | %.4fms ", times[0], times[1], times[2]);
+        System.out.printf("%.4fms    | %.4fms   | %.4fms \n\n", times[0], times[1], times[2]);
     }
 
     @Test
@@ -50,6 +50,6 @@ public class PerformanceTester {
 
         System.out.println("Performance Testing with " + numbers.length + " elements");
         System.out.println("Bubble Sort | Merge Sort | Binary Tree Sort");
-        System.out.printf("%.4fms    | %.4fms   | %.4fms ", times[0], times[1], times[2]);
+        System.out.printf("%.4fms    | %.4fms   | %.4fms \n\n", times[0], times[1], times[2]);
     }
 }
