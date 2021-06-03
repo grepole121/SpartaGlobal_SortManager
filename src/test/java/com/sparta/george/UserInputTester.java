@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 
-public class GetNumbersTest {
+public class UserInputTester {
     @Test
     @DisplayName("The test checks if non-numeric character is inputted to getNumbers method")
     public void shouldReturnEmptyArray() {

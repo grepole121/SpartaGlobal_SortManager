@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class MergeSortTest {
+public class MergeSortTester {
     @Test
     @DisplayName("The test compares sorted array with mergesort result array")
     public void testMergeSortingNumbers() {
