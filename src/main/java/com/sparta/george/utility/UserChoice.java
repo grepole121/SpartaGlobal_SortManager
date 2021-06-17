@@ -44,13 +44,13 @@ public class UserChoice {
             switch (sc.nextInt()) {
                 case 1:
                     Starter.sort(numbers, Starter.SortTypes.BUBBLE);
-                    break;
+                    return Starter.SortTypes.BUBBLE;
                 case 2:
                     Starter.sort(numbers, Starter.SortTypes.MERGE);
-                    break;
+                    return Starter.SortTypes.MERGE;
                 case 3:
                     Starter.sort(numbers, Starter.SortTypes.TREE);
-                    break;
+                    return Starter.SortTypes.TREE;
                 case 4:
                     int[] numbers1 = numbers.clone();
                     int[] numbers2 = numbers.clone();
