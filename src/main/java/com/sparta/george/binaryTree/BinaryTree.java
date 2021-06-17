@@ -1,5 +1,7 @@
 package com.sparta.george.binaryTree;
 
+import com.sparta.george.customExceptions.ChildNotFoundException;
+
 public interface BinaryTree {
     int getRootElement();
 

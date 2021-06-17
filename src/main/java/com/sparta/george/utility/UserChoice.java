@@ -1,15 +1,15 @@
 package com.sparta.george.utility;
 
-import com.sparta.george.Starter;
-import com.sparta.george.sorters.SorterNotFoundException;
+import com.sparta.george.start.Starter;
+import com.sparta.george.customExceptions.SorterNotFoundException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Choose {
-    public static final Logger logger = LogManager.getLogger(Choose.class);
+public class UserChoice {
+    public static final Logger logger = LogManager.getLogger(UserChoice.class);
 
     public static void chooseInput() {
         String wrongInput = "You can only enter a number between 1 and 2";
@@ -20,11 +20,11 @@ public class Choose {
             switch (sc.nextInt()) {
                 case 1:
                     int[] randomNumbers = GetNumbers.getRandomNumbers();
-                    Choose.chooseSorter(randomNumbers);
+                    UserChoice.chooseSorter(randomNumbers);
                     break;
                 case 2:
                     int[] numbers = Starter.getNumbers();
-                    Choose.chooseSorter(numbers);
+                    UserChoice.chooseSorter(numbers);
                     break;
                 default:
                     throw new SorterNotFoundException(wrongInput);

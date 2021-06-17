@@ -1,7 +1,7 @@
 package com.sparta.george;
 
 import com.sparta.george.binaryTree.BinaryTreeImplementation;
-import com.sparta.george.binaryTree.ChildNotFoundException;
+import com.sparta.george.customExceptions.ChildNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

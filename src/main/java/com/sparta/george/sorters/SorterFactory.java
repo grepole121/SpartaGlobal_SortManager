@@ -1,6 +1,6 @@
 package com.sparta.george.sorters;
 
-import com.sparta.george.Starter;
+import com.sparta.george.start.Starter;
 import com.sparta.george.binaryTree.BinaryTreeImplementation;
 
 public class SorterFactory {

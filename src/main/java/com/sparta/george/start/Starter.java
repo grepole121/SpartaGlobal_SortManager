@@ -1,10 +1,10 @@
-package com.sparta.george;
+package com.sparta.george.start;
 
-import com.sparta.george.binaryTree.ChildNotFoundException;
+import com.sparta.george.customExceptions.ChildNotFoundException;
 import com.sparta.george.sorters.Sorter;
 import com.sparta.george.sorters.SorterFactory;
-import com.sparta.george.sorters.SorterNotFoundException;
-import com.sparta.george.utility.Choose;
+import com.sparta.george.customExceptions.SorterNotFoundException;
+import com.sparta.george.utility.UserChoice;
 import com.sparta.george.utility.GetNumbers;
 import com.sparta.george.utility.Printer;
 
@@ -19,7 +19,7 @@ public class Starter {
 //        double[] times = GetTimes.getAllTimes(numbers);
 //        Printer.printArray(times);
 //        int[] numbers = Starter.getNumbers();
-        Choose.chooseInput();
+        UserChoice.chooseInput();
 //        Starter.chooseSorter(numbers);
 
 

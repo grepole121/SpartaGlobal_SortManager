@@ -1,5 +1,6 @@
 package com.sparta.george.binaryTree;
 
+import com.sparta.george.customExceptions.ChildNotFoundException;
 import com.sparta.george.sorters.Sorter;
 import com.sparta.george.utility.Printer;
 import org.apache.logging.log4j.LogManager;
